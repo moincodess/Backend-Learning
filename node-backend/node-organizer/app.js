@@ -13,6 +13,7 @@ async function analyzerFolder() {
                 withFileTypes: true
             });
 
+            let totalFiles = 0;
             let pdfCount = 0;
             let videoCount = 0;
             let imageCount = 0;
@@ -21,6 +22,8 @@ async function analyzerFolder() {
             let otherCount = 0;
 
             for (const element of files) {
+
+      
 
 
                 if (!element.isFile()) {
@@ -50,6 +53,8 @@ async function analyzerFolder() {
                     otherCount++;
                 }
 
+                totalFiles = Number(CodeCount +otherCount +videoCount +pdfCount +imageCount +textCount) ;
+
             } console.log("\n===== FOLDER REPORT =====");
             console.log(`Images: ${imageCount}`);
             console.log(`PDFs: ${pdfCount}`);
@@ -57,6 +62,8 @@ async function analyzerFolder() {
             console.log(`Code files: ${CodeCount}`);
             console.log(`Text files: ${textCount}`);
             console.log(`Other files: ${otherCount}`);
+            console.log(`Total files: ${totalFiles}`);
+
         } catch (error) {
             console.error("Could not analyze folder:", error.message);
             process.exitCode = 1;
